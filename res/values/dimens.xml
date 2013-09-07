@@ -12,5 +12,6 @@
     <dimen name="list_divider_height">10dp</dimen>
     <dimen name="ups_box_size">24dp</dimen>
     <dimen name="card_text">22sp</dimen>
+    <dimen name="note_text_field_padding">6dp</dimen>
 
 </resources>

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,8 +33,10 @@ public class Feed extends Activity {
 		
 		adapter = new DropAdapter(this, R.layout.card, imageArry);
 		list = (ListView) findViewById(R.id.list);
+		list.setOverScrollMode(ListView.OVER_SCROLL_ALWAYS);
+		list.setOverscrollFooter(getResources().getDrawable(R.drawable.overflow_bottom));
 		list.setAdapter(adapter);
-
+		
 		list.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
