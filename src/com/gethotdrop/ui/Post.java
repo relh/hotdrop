@@ -1,21 +1,24 @@
 package com.gethotdrop.ui;
 
-import com.gethotdrop.ui.R;
-
-import android.os.Bundle;
-import android.app.Activity;
 import android.content.Intent;
+import android.location.Location;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class Post extends Activity {
+import com.gethotdrop.core.Drop;
+import com.gethotdrop.hotdrop.HotDropActivity;
+
+public class Post extends HotDropActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_post);
 	}
-
+	
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -36,5 +39,21 @@ public class Post extends Activity {
 	    default:
 	        return super.onOptionsItemSelected(item);
 	    }
+	}
+	
+	protected class CreateDrop extends AsyncTask<Drop, Void, Drop> {
+		@Override
+		protected Drop doInBackground(Drop... drops) {
+			Drop d = drops[0];
+			Location l = mService.getRecentLocation();
+			Drop curDrop = new Drop(d.getId(), d.getUserId(), l.getLatitude(),
+				l.getLongitude(), d.getMessage(), d.getCreatedAt(),
+					d.getUpdatedAt());
+			mService.updateCache();
+			return curDrop;
+		}
+		protected void onPostExecute(Long result) {
+			// do ui stuff
+		}
 	}
 }

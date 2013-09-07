@@ -3,6 +3,8 @@ package com.gethotdrop.hotdrop;
 import java.util.Iterator;
 import java.util.Map;
 
+import com.gethotdrop.core.Drop;
+
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -24,6 +26,10 @@ public class LocationCache {
 		aContext = c;
 		DROP_RADIUS = radius;
 		bIntent = new Intent("com.gethotdrop.hotdrop.NOTIFY");
+	}
+	
+	public void handleLocationUpdate(String provider) {
+		handleLocationUpdate(lm.getLastKnownLocation(provider));
 	}
 	
 	public void handleLocationUpdate(Location loc) {

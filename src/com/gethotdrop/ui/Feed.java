@@ -1,11 +1,9 @@
 package com.gethotdrop.ui;
 
 import java.util.ArrayList;
-import android.os.Bundle;
-import android.app.Activity;
-import android.app.ListActivity;
+
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,7 +12,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class Feed extends Activity {
+import com.gethotdrop.hotdrop.HotDropActivity;
+
+public class Feed extends HotDropActivity {
 
 	ArrayList<Drop> imageArry = new ArrayList<Drop>();
 	DropAdapter adapter;
@@ -24,6 +24,7 @@ public class Feed extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_feed);
+	
 		// example drops
 		imageArry.add(new Drop(R.drawable.placeholderimage, "I"));
 		imageArry.add(new Drop(R.drawable.placeholderimage, "am"));
@@ -69,6 +70,7 @@ public class Feed extends Activity {
 		case R.id.action_post:
 			Intent intent = new Intent(Feed.this, Post.class);
 			Feed.this.startActivity(intent);
+			
 			return true;
 		case R.id.action_settings:
 			//
