@@ -8,6 +8,10 @@
     <string name="action_done">Done</string>
     <string name="note_hint">Add a note...\n\n</string>
     
+    <string name="button_photo">Snap a photo</string>
+    <string name="button_video">Shoot a video</string>
+    <string name="button_upload">Upload media</string>
+    
     <string name="hello_world">Hello world!</string>
     <string name="example_card_note">This is placeholder text for This is placeholder text for $testing. Eventually this will be a hotdrop #@###hashtag</string>
 	<string name="example_time_stamp">2 days ago</string>

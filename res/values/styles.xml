@@ -17,11 +17,26 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
      	  <item name="android:textSize">16sp</item>
     </style>
-
+    
     <style name="PostButton" parent="AppBaseTheme">
+        <item name="android:padding">@dimen/button_padding</item>
+        <item name="android:clickable">true</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:background">@color/blue</item>
         <item name="android:layout_marginBottom">@dimen/list_divider_height</item>
     </style>
     
+     <style name="BlueText" parent="AppBaseTheme">
+        <item name="android:background">@color/blue</item>
+        <item name="android:padding">@dimen/ups_padding</item>
+        <item name="android:text">@string/example_ups</item>
+        <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item> 
+     </style>
+    
+     <style name="PostText" parent="BlueText">
+        <item name="android:layout_marginLeft">10dp</item>
+     </style>
+     
 </resources>

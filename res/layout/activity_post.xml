@@ -15,17 +15,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <ImageButton
-            android:id="@+id/imageButton1"
+        <ImageView
+            android:id="@+id/image_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/feed" />
+            android:src="@drawable/ic_camera" />
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/text_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="@string/button_photo"
+            style="@style/PostText" />
 
     </LinearLayout>
 
@@ -34,17 +35,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <ImageButton
-            android:id="@+id/imageButton2"
+        <ImageView
+            android:id="@+id/image_video"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/ic_video" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/text_video"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="@string/button_video"
+            style="@style/PostText" />
 
     </LinearLayout>
 
@@ -53,17 +55,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <ImageButton
-            android:id="@+id/imageButton3"
+        <ImageView
+            android:id="@+id/image_upload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/ic_upload" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/text_upload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="@string/button_upload"
+            style="@style/PostText" />
 
     </LinearLayout>
 

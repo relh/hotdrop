@@ -3,7 +3,8 @@
     android:layout_height="wrap_content"
     android:background="@color/grayLight"
     android:orientation="horizontal"
-    android:padding="@dimen/feed_padding" >
+    android:paddingLeft="@dimen/feed_padding"
+    android:paddingRight="@dimen/feed_padding" >
 
     <ListView
         android:id="@+id/list"

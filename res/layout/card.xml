@@ -11,7 +11,7 @@
 	    android:layout_height="wrap_content"
 	    android:layout_gravity="center"
 	    android:layout_margin="@dimen/card_image_margin"
-	    android:src="@drawable/ic_launcher" />
+	    android:src="@drawable/placeholderimage" />
 
      <TextView
          android:id="@+id/note"
@@ -35,12 +35,7 @@
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:layout_alignParentLeft="true"
-             android:background="@color/blue"
-             android:padding="@dimen/ups_padding"
-             android:text="@string/example_ups"
-             android:textColor="?android:attr/textColorPrimaryInverse"
-             android:textSize="18sp"
-             android:textStyle="bold" />
+             style="@style/BlueText" />
 
          <TextView
              android:id="@+id/timestamp"
