@@ -12,9 +12,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class DropAdapter extends ArrayAdapter<Drop> {
-    Context context;
+   
+	Context context;
    int layoutResourceId;
    ArrayList<Drop> data=new ArrayList<Drop>();
+   
    public DropAdapter(Context context, int layoutResourceId, ArrayList<Drop> data) {
        super(context, layoutResourceId, data);
        this.layoutResourceId = layoutResourceId;
@@ -33,8 +35,8 @@ public class DropAdapter extends ArrayAdapter<Drop> {
            row = inflater.inflate(layoutResourceId, parent, false);
 
            holder = new ImageHolder();
-           holder.txtTitle = (TextView)row.findViewById(R.id.txtTitle);
-           holder.imgIcon = (ImageView)row.findViewById(R.id.imgIcon);
+           holder.note = (TextView)row.findViewById(R.id.note);
+           holder.image = (ImageView)row.findViewById(R.id.image);
            row.setTag(holder);
        }
        else
@@ -43,16 +45,16 @@ public class DropAdapter extends ArrayAdapter<Drop> {
        }
 
        Drop myImage = data.get(position);
-       holder.txtTitle.setText("name");
+       holder.note.setText(myImage.message);
        int outImage=myImage.image;
-       holder.imgIcon.setImageResource(outImage);
+       holder.image.setImageResource(outImage);
       return row;
 
    }
 
    static class ImageHolder
    {
-       ImageView imgIcon;
-       TextView txtTitle;
+       ImageView image;
+       TextView note;
    }
 }

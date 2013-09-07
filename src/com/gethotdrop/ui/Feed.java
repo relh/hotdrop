@@ -2,87 +2,56 @@ package com.gethotdrop.ui;
 
 import java.util.ArrayList;
 import android.os.Bundle;
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
-public class Feed extends ListActivity {
+public class Feed extends Activity {
 
-    ArrayList<Drop> imageArry = new ArrayList<Drop>();
-    DropAdapter adapter;
-	
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_post);
-		
-        // add image and text in arraylist
-        imageArry.add(new Drop(R.drawable.ic_launcher, "FaceBook"));
-        imageArry.add(new Drop(R.drawable.ic_launcher, "Google"));
-        imageArry.add(new Drop(R.drawable.ic_launcher, "Ical"));
-        imageArry.add(new Drop(R.drawable.ic_launcher, "Outlook"));
-        imageArry.add(new Drop(R.drawable.ic_launcher, "Twitter"));
-        // add data in contact image adapter
-        adapter = new DropAdapter(this, R.layout.activity_feed, imageArry);
-        ListView dataList = (ListView) findViewById(R.id.list);
-        dataList.setAdapter(adapter);
-	}
-        
-	/*ListView listView;
+	ArrayList<Drop> imageArry = new ArrayList<Drop>();
+	DropAdapter adapter;
+	ListView list;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_feed);
+		// example drops
+		imageArry.add(new Drop(R.drawable.ic_launcher, "I"));
+		imageArry.add(new Drop(R.drawable.ic_launcher, "am"));
+		imageArry.add(new Drop(R.drawable.ic_launcher, "a"));
+		imageArry.add(new Drop(R.drawable.ic_launcher, "drop"));
+		imageArry.add(new Drop(R.drawable.ic_launcher, "yaya"));
+		
+		adapter = new DropAdapter(this, R.layout.card, imageArry);
+		list = (ListView) findViewById(R.id.list);
+		list.setAdapter(adapter);
 
-		listView = getListView();
-
-		// Defined Array values to show in ListView
-		String[] values = new String[] { "Android List View",
-				"Adapter implementation", "Simple List View In Android",
-				"Create List View Android", "Android Example",
-				"List View Source Code", "List View Array Adapter",
-				"Android Example List View" };
-
-		// Define a new Adapter
-		// First parameter - Context
-		// Second parameter - Layout for the row
-		// Third parameter - ID of the TextView to which the data is written
-		// Forth - the Array of data
-
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				R.layout.card, R.id.details, values);
-
-		// Assign adapter to ListView
-		listView.setAdapter(adapter);
-
-		// ListView Item Click Listener
-		listView.setOnItemClickListener(new OnItemClickListener() {
+		list.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 
-				// ListView Clicked item index
 				int itemPosition = position;
+				Drop itemValue = (Drop) list.getItemAtPosition(position);
 
-				// ListView Clicked item value
-				String itemValue = (String) listView
-						.getItemAtPosition(position);
-
-				// Show Alert
 				Toast.makeText(
 						getApplicationContext(),
 						"Position :" + itemPosition + "  ListItem : "
-								+ itemValue, Toast.LENGTH_LONG).show();
-
+								+ itemValue.toString(), Toast.LENGTH_SHORT).show();
 			}
 
 		});
-	}*/
-/*
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -94,7 +63,7 @@ public class Feed extends ListActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		switch (item.getItemId()) {
-		case R.id.action_new:
+		case R.id.action_post:
 			Intent intent = new Intent(Feed.this, Post.class);
 			Feed.this.startActivity(intent);
 			return true;
@@ -105,5 +74,5 @@ public class Feed extends ListActivity {
 			return super.onOptionsItemSelected(item);
 		}
 	}
-*/
+
 }

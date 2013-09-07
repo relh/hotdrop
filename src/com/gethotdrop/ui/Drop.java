@@ -3,16 +3,8 @@ package com.gethotdrop.ui;
 public class Drop
 {
     int image;
-    String text;
+    String message;
 
-    public Drop(int image, String name) {
-        super();
-        this.image = image;
-        this.text = name;
-        
-        //GET DROP FROM SERVER IN CONSTRUCTOR
-    }
-    
     public int getImage() {
         return image;
     }
@@ -22,11 +14,16 @@ public class Drop
     }
 
     public String getName() {
-        return text;
+        return message;
     }
 
     public void setName(String name) {
-        this.text = name;
+        this.message = name;
     }
 
+    public Drop(int image, String name) {
+        super();
+        this.image = image;
+        this.message = name;
+    }
 }
