@@ -37,6 +37,7 @@ public class UpdateService extends Service {
 		// get radius from API
 		// dropRadius = api.getRadius();
 		// setup location monitoring
+		API = new Api(Installation.id(getApplicationContext()));
 		waitLocation = false;
 		Log.e("SERVICE", "ServiceCreated");
 		locManager = (LocationManager) this
@@ -110,7 +111,9 @@ public class UpdateService extends Service {
 			m_handler.postDelayed(m_updateChecker, m_interval);
 		}
 	};
-
+	public Api getAPI() {
+		return API;
+	}
 	public void updateCache() {
 		waitLocation = true;
 		locManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER,

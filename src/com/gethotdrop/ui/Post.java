@@ -7,7 +7,10 @@ import android.os.Bundle;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+
+import org.json.JSONException;
 
 import com.gethotdrop.ui.R;
 
@@ -28,8 +31,10 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.gethotdrop.core.Api;
 import com.gethotdrop.core.Drop;
 import com.gethotdrop.hotdrop.HotDropActivity;
+import com.gethotdrop.hotdrop.Installation;
 
 public class Post extends HotDropActivity {
 
@@ -87,16 +92,20 @@ public class Post extends HotDropActivity {
 	    }
 	}
 	
-	protected class CreateDrop extends AsyncTask<Drop, Void, Drop> {
+	protected class CreateDrop extends AsyncTask<String, Void, Integer> {
 		@Override
-		protected Drop doInBackground(Drop... drops) {
-			Drop d = drops[0];
+		protected Integer doInBackground(String... string) {
+			String s = string[0];
 			Location l = mService.getRecentLocation();
-			Drop curDrop = new Drop(d.getId(), d.getUserId(), l.getLatitude(),
-				l.getLongitude(), d.getMessage(), d.getCreatedAt(),
-					d.getUpdatedAt());
+			try {
+				mService.getAPI().setHotdrop(l.getLatitude(), l.getLongitude(), s);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return 0;
+			}
+			
 			mService.updateCache();
-			return curDrop;
+			return 1;
 		}
 		protected void onPostExecute(Long result) {
 			// do ui stuff
