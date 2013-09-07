@@ -2,6 +2,12 @@ package com.gethotdrop.ui;
 
 import java.util.ArrayList;
 
+import android.os.Bundle;
+import android.app.Activity;
+import android.app.ListActivity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,24 +25,27 @@ public class Feed extends HotDropActivity {
 	ArrayList<Drop> imageArry = new ArrayList<Drop>();
 	DropAdapter adapter;
 	ListView list;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_feed);
-	
+
+		getActionBar().setTitle(R.string.action_feed);
+		
 		// example drops
-		imageArry.add(new Drop(R.drawable.placeholderimage, "I"));
-		imageArry.add(new Drop(R.drawable.placeholderimage, "am"));
-		imageArry.add(new Drop(R.drawable.placeholderimage, "a"));
+		imageArry.add(new Drop(R.drawable.placeholderimage, "I like to fish off of piers and wave at sydney"));
+		imageArry.add(new Drop(R.drawable.placeholderimage, "You fly across the stars as we stare into the void"));
+		imageArry.add(new Drop(R.drawable.placeholderimage, "I love Lana Del Rey; Jeff how could you be so evil?!"));
 		imageArry.add(new Drop(R.drawable.placeholderimage, "drop"));
 		imageArry.add(new Drop(R.drawable.placeholderimage, "yaya"));
 		
 		adapter = new DropAdapter(this, R.layout.card, imageArry);
 		list = (ListView) findViewById(R.id.list);
 		list.setOverScrollMode(ListView.OVER_SCROLL_ALWAYS);
-		list.setOverscrollFooter(getResources().getDrawable(R.drawable.overflow_bottom));
+		//list.setOverscrollFooter(getResources().getDrawable(R.drawable.overflow_bottom));
 		list.setAdapter(adapter);
+
 		
 		list.setOnItemClickListener(new OnItemClickListener() {
 
@@ -44,13 +53,11 @@ public class Feed extends HotDropActivity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 
-				int itemPosition = position;
-				Drop itemValue = (Drop) list.getItemAtPosition(position);
-
-				Toast.makeText(
-						getApplicationContext(),
-						"Position :" + itemPosition + "  ListItem : "
-								+ itemValue.toString(), Toast.LENGTH_SHORT).show();
+				//int itemPosition = position;
+				//Drop itemValue = (Drop) list.getItemAtPosition(position);
+				
+				// int ups = Integer.parseInt(getApplicationContext().getResources().getString(R.id.ups));
+				
 			}
 
 		});
@@ -73,11 +80,30 @@ public class Feed extends HotDropActivity {
 			
 			return true;
 		case R.id.action_settings:
-			//
+			createNotification(null, "AQ");
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
 	}
+	
+	  public void createNotification(View view, String type) {
+		    // Prepare intent which is triggered if the
+		    // notification is selected
+//		    Intent intent = new Intent(this, NotificationReceiver.class);
+
+		    // Build notification
+		    // Actions are just fake
+		    Notification noti = new Notification.Builder(this)
+		        .setContentTitle(type +  " Warning")
+		        .setContentText("Dangerous levels of " + type).build();
+		        
+		    NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+		    // Hide the notification after its selected
+		    noti.flags |= Notification.FLAG_AUTO_CANCEL;
+
+		    notificationManager.notify(0, noti);
+
+		  }
 
 }

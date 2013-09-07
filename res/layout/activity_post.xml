@@ -10,16 +10,29 @@
     android:orientation="vertical"
     tools:context=".Post" >
 
+    <com.gethotdrop.ui.DropImageView
+        android:id="@+id/chosenImage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/note_caption_vertical_margin"
+        android:background="@color/white"
+        android:src="@drawable/placeholderimage"
+        android:visibility="gone" />
+
     <LinearLayout
         style="@style/PostButton"
+        android:id="@+id/layout_photo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:focusable="true" >
 
         <ImageView
             android:id="@+id/image_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_camera" />
+            android:src="@drawable/ic_camera"
+            android:focusable="false" />
 
         <TextView
             android:id="@+id/text_photo"
@@ -32,14 +45,17 @@
 
     <LinearLayout
         style="@style/PostButton"
+        android:id="@+id/layout_video"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:focusable="true" >
 
         <ImageView
             android:id="@+id/image_video"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_video" />
+            android:src="@drawable/ic_video"
+            android:focusable="false" />
 
         <TextView
             android:id="@+id/text_video"
@@ -52,14 +68,17 @@
 
     <LinearLayout
         style="@style/PostButton"
+        android:id="@+id/layout_upload"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:focusable="true" >
 
         <ImageView
             android:id="@+id/image_upload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_upload" />
+            android:src="@drawable/ic_upload"
+            android:focusable="false" />
 
         <TextView
             android:id="@+id/text_upload"
@@ -73,19 +92,22 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white" 
+        android:layout_marginTop="@dimen/note_caption_vertical_margin"
+        android:background="@color/white"
         android:padding="@dimen/note_text_field_padding" >
 
         <EditText
             android:id="@+id/editText1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
             android:gravity="top"
             android:hint="@string/note_hint"
+            android:imeOptions="actionDone"
             android:inputType="textMultiLine"
             android:lines="3" />
 
     </RelativeLayout>
+    
+
 
 </LinearLayout>

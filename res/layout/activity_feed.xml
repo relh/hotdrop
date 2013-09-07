@@ -11,7 +11,26 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:divider="@android:color/transparent"
-        android:dividerHeight="@dimen/list_divider_height" >
-
+        android:dividerHeight="@dimen/list_divider_height" 
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/list_bottom_padding"
+        android:paddingTop="@dimen/list_padding"  >
     </ListView>
+    
+        <TextView android:id="@android:id/empty"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:text="@string/empty_state_msg"/>
+    
+        <ImageView
+        	android:id="@android:id/empty"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:src="@drawable/ic_empty_state"/>
+        
+        <TextView android:id="@android:id/empty"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:text="@string/empty_state_header"/>
+    
 </LinearLayout>
