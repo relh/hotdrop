@@ -25,11 +25,11 @@ public class Feed extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_feed);
 		// example drops
-		imageArry.add(new Drop(R.drawable.ic_launcher, "I"));
-		imageArry.add(new Drop(R.drawable.ic_launcher, "am"));
-		imageArry.add(new Drop(R.drawable.ic_launcher, "a"));
-		imageArry.add(new Drop(R.drawable.ic_launcher, "drop"));
-		imageArry.add(new Drop(R.drawable.ic_launcher, "yaya"));
+		imageArry.add(new Drop(R.drawable.placeholderimage, "I"));
+		imageArry.add(new Drop(R.drawable.placeholderimage, "am"));
+		imageArry.add(new Drop(R.drawable.placeholderimage, "a"));
+		imageArry.add(new Drop(R.drawable.placeholderimage, "drop"));
+		imageArry.add(new Drop(R.drawable.placeholderimage, "yaya"));
 		
 		adapter = new DropAdapter(this, R.layout.card, imageArry);
 		list = (ListView) findViewById(R.id.list);
