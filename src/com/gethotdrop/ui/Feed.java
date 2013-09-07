@@ -34,7 +34,7 @@ public class Feed extends HotDropActivity {
 		getActionBar().setTitle(R.string.action_feed);
 		
 		// example drops
-		imageArry.add(new Drop(R.drawable.placeholderimage, "I like to fish off of piers and wave at sydney"));
+	    imageArry.add(new Drop(R.drawable.placeholderimage, "I like to fish off of piers and wave at sydney"));
 		imageArry.add(new Drop(R.drawable.placeholderimage, "You fly across the stars as we stare into the void"));
 		imageArry.add(new Drop(R.drawable.placeholderimage, "I love Lana Del Rey; Jeff how could you be so evil?!"));
 		imageArry.add(new Drop(R.drawable.placeholderimage, "drop"));
@@ -46,7 +46,6 @@ public class Feed extends HotDropActivity {
 		//list.setOverscrollFooter(getResources().getDrawable(R.drawable.overflow_bottom));
 		list.setAdapter(adapter);
 
-		
 		list.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
