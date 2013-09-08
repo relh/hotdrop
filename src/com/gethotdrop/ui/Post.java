@@ -1,42 +1,22 @@
 package com.gethotdrop.ui;
 
 import android.content.Intent;
-import android.location.Location;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-
-import org.json.JSONException;
-
 import com.gethotdrop.ui.R;
 
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.app.Activity;
-import android.content.ContentResolver;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.support.v4.app.NavUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ImageView;
+import android.widget.EditText;
 import android.widget.Toast;
-
-import com.gethotdrop.core.Api;
-import com.gethotdrop.core.Drop;
-import com.gethotdrop.hotdrop.HotDropActivity;
-import com.gethotdrop.hotdrop.Installation;
-
-public class Post extends HotDropActivity {
+public class Post extends Activity {
 
 	private static int TAKE_PICTURE = 1;
 	private Uri outputFileUri;
@@ -70,7 +50,6 @@ public class Post extends HotDropActivity {
 		
 	}
 	
-	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -80,7 +59,12 @@ public class Post extends HotDropActivity {
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
+	    Toast.makeText(getBaseContext(), item.toString(), Toast.LENGTH_SHORT).show();
+		switch (item.getItemId()) {
+		case R.id.submit:
+			String submitThroughDan = ((EditText)findViewById(R.id.submitText)).getText().toString(); 
+			//
+			return true;
 	    case android.R.id.home:
 	        NavUtils.navigateUpFromSameTask(this);
 	        return true;
@@ -92,37 +76,15 @@ public class Post extends HotDropActivity {
 	    }
 	}
 	
-	protected class CreateDrop extends AsyncTask<String, Void, Integer> {
-		@Override
-		protected Integer doInBackground(String... string) {
-			String s = string[0];
-			Location l = mService.getRecentLocation();
-			try {
-				mService.getAPI().setHotdrop(l.getLatitude(), l.getLongitude(), s);
-			} catch (Exception e) {
-				e.printStackTrace();
-				return 0;
-			}
-			
-			mService.updateCache();
-			return 1;
-		}
-		protected void onPostExecute(Long result) {
-			// do ui stuff
-		}
-	}
-
-	
-	
 	 @Override
-     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-         super.onActivityResult(requestCode, resultCode, data);
-         if (requestCode == TAKE_PICTURE){
- 			Toast.makeText(getBaseContext(), outputFileUri.toString(), Toast.LENGTH_SHORT).show();
- 			findViewById(R.id.layout_photo).setVisibility(View.GONE);
- 			findViewById(R.id.layout_video).setVisibility(View.GONE);
- 			findViewById(R.id.layout_upload).setVisibility(View.GONE);
- 			findViewById(R.id.chosenImage).setVisibility(View.VISIBLE);
-         }
-     }
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == TAKE_PICTURE){
+			Toast.makeText(getBaseContext(), outputFileUri.toString(), Toast.LENGTH_SHORT).show();
+			findViewById(R.id.layout_photo).setVisibility(View.GONE);
+			findViewById(R.id.layout_video).setVisibility(View.GONE);
+			findViewById(R.id.layout_upload).setVisibility(View.GONE);
+			findViewById(R.id.chosenImage).setVisibility(View.VISIBLE);
+        }
+    }
 }

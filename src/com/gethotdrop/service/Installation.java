@@ -1,4 +1,4 @@
-package com.gethotdrop.hotdrop;
+package com.gethotdrop.service;
 
 import java.io.File;
 import java.io.FileOutputStream;

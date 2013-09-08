@@ -1,3 +1,4 @@
+
 package com.gethotdrop.ui;
 
 import android.content.Context;
@@ -5,9 +6,9 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-public class DropImageView extends ImageView {
+public class AspectRatioForceView extends ImageView {
 
-	public DropImageView(Context context, AttributeSet attrs) {
+	public AspectRatioForceView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
 

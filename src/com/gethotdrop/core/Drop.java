@@ -11,7 +11,7 @@ public class Drop {
 	private int userId;
 	private double latitude;
 	private double longitude;
-	private String message;
+	public String message;
 	private Date createdAt;
 	private Date updatedAt;
 	

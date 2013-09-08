@@ -6,7 +6,7 @@
     <string name="action_feed">Discover drops</string>
     <string name="action_back">Back</string>
     <string name="action_post">Leave a drop</string>
-    <string name="action_done">Done</string>
+     <string name="action_submit">submit</string>
     <string name="note_hint">Add a note...\n\n</string>
     <string name="empty_state_header">Dead spot.</string>
     <string name="empty_state_msg">Be the first to leave a hotdrop here.</string>

@@ -10,7 +10,7 @@
     android:orientation="vertical"
     tools:context=".Post" >
 
-    <com.gethotdrop.ui.DropImageView
+    <com.gethotdrop.ui.AspectRatioForceView
         android:id="@+id/chosenImage"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
         android:padding="@dimen/note_text_field_padding" >
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/submitText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="top"

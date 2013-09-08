@@ -1,7 +1,7 @@
 package com.gethotdrop.ui;
 
-import java.util.ArrayList;
-
+import java.util.List;
+import com.gethotdrop.core.Drop;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,16 +12,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class DropAdapter extends ArrayAdapter<Drop> {
-   
-	Context context;
+   Context context;
    int layoutResourceId;
-   ArrayList<Drop> data=new ArrayList<Drop>();
+   List<Drop> data;
    
-   public DropAdapter(Context context, int layoutResourceId, ArrayList<Drop> data) {
-       super(context, layoutResourceId, data);
+   public DropAdapter(Context context, int layoutResourceId, List<Drop> dropArray) {
+       super(context, layoutResourceId, dropArray);
        this.layoutResourceId = layoutResourceId;
        this.context = context;
-       this.data = data;
+       this.data = dropArray;
    }
 
    @Override
@@ -44,9 +43,9 @@ public class DropAdapter extends ArrayAdapter<Drop> {
            holder = (ImageHolder)row.getTag();
        }
 
-       Drop myImage = data.get(position);
-       holder.note.setText(myImage.message);
-       int outImage=myImage.image;
+       Drop thisDrop = data.get(position);
+       holder.note.setText(thisDrop.message);
+       int outImage=R.drawable.ic_camera;
        holder.image.setImageResource(outImage);
       return row;
 

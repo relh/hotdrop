@@ -79,7 +79,7 @@ public class Api {
 		JSONObject json = new JSONObject(getRequest(url, query));
 		JSONObject jsonHotdrops = json.getJSONObject("hotdrops");
 		
-		Iterator i = jsonHotdrops.keys();
+		Iterator<String> i = jsonHotdrops.keys();
 		
 		while (i.hasNext()) {
 			Object key = i.next();
@@ -124,6 +124,7 @@ public class Api {
 	private String getRequest(String url, String query) throws IOException {
 		URLConnection connection = new URL(url + "?" + query).openConnection();
 		connection.setRequestProperty("Accept-Charset", CHARSET);
+		//connection.setRequestProperty("accept", "application/json");
 		InputStream response = connection.getInputStream();
 		
 		BufferedReader reader = null;

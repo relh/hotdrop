@@ -5,7 +5,7 @@
     android:background="@color/white"
     android:orientation="vertical" >
   
-    <com.gethotdrop.ui.DropImageView
+    <com.gethotdrop.ui.AspectRatioForceView
 	    android:id="@+id/image"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
