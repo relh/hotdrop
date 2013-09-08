@@ -17,20 +17,26 @@
         android:paddingTop="@dimen/list_padding"  >
     </ListView>
     
-        <TextView android:id="@android:id/empty"
+    <LinearLayout android:id="@+id/emptyHolder"
+        android:orientation="vertical"
+        android:visibility="gone" 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+        <TextView android:id="@+id/empty1"
                android:layout_width="match_parent"
                android:layout_height="match_parent"
                android:text="@string/empty_state_msg"/>
     
         <ImageView
-        	android:id="@android:id/empty"
+        	android:id="@+id/empty2"
                android:layout_width="match_parent"
                android:layout_height="match_parent"
                android:src="@drawable/ic_empty_state"/>
         
-        <TextView android:id="@android:id/empty"
+        <TextView android:id="@+id/empty3"
                android:layout_width="match_parent"
                android:layout_height="match_parent"
                android:text="@string/empty_state_header"/>
-    
+    </LinearLayout>
+
 </LinearLayout>

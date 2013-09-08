@@ -36,7 +36,7 @@ public class DropAdapter extends ArrayAdapter<Drop> {
 
            holder = new ImageHolder();
            holder.note = (TextView)row.findViewById(R.id.note);
-           //holder.image = (ImageView)row.findViewById(R.id.image);
+           holder.image = (ImageView)row.findViewById(R.id.image);
            row.setTag(holder);
        }
        else

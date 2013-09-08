@@ -42,7 +42,7 @@ public class UpdateService extends Service {
 		update = new Updater(locManager, cache, m_handler, m_interval, this);
 		update.run();
 	}
-
+	
 	@Override
 	public IBinder onBind(Intent intent) {
 		

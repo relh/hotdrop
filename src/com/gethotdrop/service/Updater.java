@@ -13,6 +13,7 @@ import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.view.View;
 
 public class Updater implements Runnable {
@@ -85,10 +86,11 @@ public class Updater implements Runnable {
 		m_handler.removeCallbacks(this);
 		this.run();
 	}
+	
 	public class APIQuery extends AsyncTask<Location, Void, Boolean> {
 		@Override
 		protected Boolean doInBackground(Location... loc) {
-			return cache.refreshCache(loc[0]);
+			return cache.refreshCache(loc[0]);//
 		}
 		
 		protected void onPostExecute(Boolean b) {
