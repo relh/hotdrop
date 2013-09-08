@@ -21,12 +21,17 @@ public class Feed extends Activity {
 	DropAdapter adapter;
 	ListView list;
 	LocalBroadcastManager bManager;	
+	static Context c;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_feed);
 		getActionBar().setTitle(R.string.action_feed);
+		
+		c = this;
+		
+		startService(new Intent(this, UpdateService.class));
 		
 		bManager = LocalBroadcastManager.getInstance(this);
 		IntentFilter intentFilter = new IntentFilter();
@@ -45,12 +50,6 @@ public class Feed extends Activity {
 		list.setOverScrollMode(ListView.OVER_SCROLL_ALWAYS);
 		//list.setOverscrollFooter(getResources().getDrawable(R.drawable.overflow_bottom));
 		list.setAdapter(adapter);
-	}
-	
-	@Override
-	public void onResume() {
-		super.onResume();
-		startService(new Intent(this, UpdateService.class));
 	}
 
 	@Override
@@ -81,7 +80,7 @@ public class Feed extends Activity {
 			   // Extract data included in the Intent
 		       if(intent.getAction().equals("com.gethotdrop.service.UPDATE_FEED")) {
 		    	   Log.v("Test", "this is the activity");
-		    	   DropAdapter adapter = new DropAdapter(context, R.layout.card, Cache.getInstance().getActiveDropsList());
+		    	   DropAdapter adapter = new DropAdapter(c, R.layout.card, Cache.getInstance().getActiveDropsList());
 		    	   list.setAdapter(adapter);
 		        }
 		  }

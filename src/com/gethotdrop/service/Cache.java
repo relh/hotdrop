@@ -33,6 +33,9 @@ public class Cache {
 	}
 
 	public boolean refreshCache(Location location) {
+		if (location == null ){
+			return false;
+		}
 		double radius = 0;
 		Map<Integer, Drop> newAllDrops;
 		try {
@@ -47,7 +50,7 @@ public class Cache {
 		Map<Integer, Drop> oldActiveDrops = activeDrops;
 		Map<Integer, Drop> newActiveDrops = new HashMap<Integer, Drop>();
 		for (Drop drop : newAllDrops.values()) {
-			if (drop.getLocation().distanceTo(location) <= radius) {
+			if (drop.getLocation().distanceTo(location) <= radius * 1000) {
 				newActiveDrops.put(drop.getId(), drop);
 			}
 		}

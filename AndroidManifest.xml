@@ -20,7 +20,7 @@
         android:theme="@style/Theme.Actionbartheme" >
 
         <service
-            android:name=".UpdateService"
+            android:name="com.gethotdrop.service.UpdateService"
             android:label="HotDrop Sync Service" >
         </service>
 

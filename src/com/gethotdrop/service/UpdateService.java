@@ -6,13 +6,14 @@ import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 
 public class UpdateService extends Service {
-	LocationManager locManager;
+	public LocationManager locManager;
 	Cache cache;
 	private long minTime = (1000) * 60 * (1 / 2);
 	private float minDistance = 15F;
@@ -24,7 +25,7 @@ public class UpdateService extends Service {
 	@Override
 	public void onCreate() {
 		
-		Log.d("service", "This is a service");
+		Log.e("service", "This is a service");
 		locManager = (LocationManager) this
 				.getSystemService(Context.LOCATION_SERVICE);
 		// get singletons
@@ -53,7 +54,7 @@ public class UpdateService extends Service {
 	/**
 	 * Location Listener
 	 */
-	LocationListener locListener = new LocationListener() {
+	public LocationListener locListener = new LocationListener() {
 
 		@Override
 		public void onLocationChanged(Location arg0) {
@@ -80,19 +81,7 @@ public class UpdateService extends Service {
 	Handler m_handler = new Handler();
 	Updater update;
 	
-	/**
-	 * Location Helpers
-	 */
-	public void startLocationListen() {
-		locManager.removeUpdates(locListener);
-		locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, .5F, postLoc);
-		locManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, .5F, postLoc);
-	}
-	public void stopLocationListen() {
-		locManager.removeUpdates(postLoc);
-		locManager.requestLocationUpdates(provider, minTime, minDistance,
-				locListener);	
-	}
 	
-	PostLocationListener postLoc = new PostLocationListener();
+	
+	
 }

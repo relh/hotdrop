@@ -1,6 +1,7 @@
 package com.gethotdrop.service;
 
 import java.util.List;
+import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -9,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
 import android.view.View;
@@ -38,10 +40,8 @@ public class Updater implements Runnable {
 		String provider = LocationManager.GPS_PROVIDER;
 		Location lastKnown = locManager.getLastKnownLocation(provider);
 		if (lastKnown == null) lastKnown = locManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-		boolean result = cache.refreshCache(lastKnown);
-		if (result)
-			makeNotifications();
-		m_handler.postDelayed(m_update, m_interval);
+		
+		new APIQuery().execute(lastKnown);
 	}
 
 	public void makeNotifications() {
@@ -63,6 +63,7 @@ public class Updater implements Runnable {
 		return false;
 	}
 
+	@SuppressLint("NewApi")
 	public void createNotification(View view, String type) {
 		// Prepare intent which is triggered if the
 		// notification is selected
@@ -83,6 +84,20 @@ public class Updater implements Runnable {
 	public void reset() {
 		m_handler.removeCallbacks(this);
 		this.run();
+	}
+	public class APIQuery extends AsyncTask<Location, Void, Boolean> {
+		@Override
+		protected Boolean doInBackground(Location... loc) {
+			return cache.refreshCache(loc[0]);
+		}
+		
+		protected void onPostExecute(Boolean b) {
+			if (b)
+			makeNotifications();
+			m_handler.postDelayed(m_update, m_interval);
+		}
+		
+		
 	}
 
 }
