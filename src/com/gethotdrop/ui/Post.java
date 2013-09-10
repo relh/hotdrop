@@ -1,20 +1,11 @@
 package com.gethotdrop.ui;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.IBinder;
-
 import java.io.File;
-import java.io.IOException;
-
-import org.json.JSONException;
-
 import com.gethotdrop.core.Api;
-import com.gethotdrop.core.Drop;
 import com.gethotdrop.service.Installation;
 import com.gethotdrop.service.UpdateService;
 import com.gethotdrop.ui.R;
@@ -38,6 +29,7 @@ public class Post extends Activity {
 	LocationManager locManager;
 	LocationListener listen;
 
+	static Context c;
 	private static int TAKE_PICTURE = 1;
 	private Uri outputFileUri;
 
@@ -47,6 +39,7 @@ public class Post extends Activity {
 		setContentView(R.layout.activity_post);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
+		c = this;
 		locManager = (LocationManager) this
 				.getSystemService(Context.LOCATION_SERVICE);
 		listen = new LocationListener() {
@@ -117,15 +110,16 @@ public class Post extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		Toast.makeText(getBaseContext(), item.toString(), Toast.LENGTH_SHORT)
-				.show();
 		switch (item.getItemId()) {
-		case R.id.submit:
-			
+		case R.id.submit:			
 			String submitThroughDan = ((EditText) findViewById(R.id.submitText))
 					.getText().toString();
-			new CreateDrop().execute(submitThroughDan);
-			//
+			if (submitThroughDan.isEmpty()) {
+				Toast.makeText(getBaseContext(), "Write a message!", Toast.LENGTH_SHORT)
+				.show();
+			} else {
+				new CreateDrop().execute(submitThroughDan);
+			}
 			return true;
 		case android.R.id.home:
 			NavUtils.navigateUpFromSameTask(this);
@@ -142,8 +136,6 @@ public class Post extends Activity {
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == TAKE_PICTURE) {
-			Toast.makeText(getBaseContext(), outputFileUri.toString(),
-					Toast.LENGTH_SHORT).show();
 			findViewById(R.id.layout_photo).setVisibility(View.GONE);
 			findViewById(R.id.layout_video).setVisibility(View.GONE);
 			findViewById(R.id.layout_upload).setVisibility(View.GONE);
@@ -151,9 +143,9 @@ public class Post extends Activity {
 		}
 	}
 
-	protected class CreateDrop extends AsyncTask<String, Void, Integer> {
+	protected class CreateDrop extends AsyncTask<String, Void, Long> {
 		@Override
-		protected Integer doInBackground(String... strings) {
+		protected Long doInBackground(String... strings) {
 			String s = strings[0];
 			Api API = new Api(Installation.id(getApplicationContext()));
 			Location l = locManager
@@ -169,11 +161,12 @@ public class Post extends Activity {
 				e.printStackTrace();
 			}
 
-			return 1;
+			return 1L;
 		}
 
+		@Override
 		protected void onPostExecute(Long result) {
-
+			NavUtils.navigateUpFromSameTask((Activity) c);
 		}
 	}
 

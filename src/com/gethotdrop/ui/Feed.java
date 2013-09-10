@@ -48,6 +48,7 @@ public class Feed extends Activity {
 		
 		list = (ListView) findViewById(R.id.list);
 		list.setOverScrollMode(ListView.OVER_SCROLL_ALWAYS);
+		//list.setOverscrollHeader(header);
 		//list.setOverscrollFooter(getResources().getDrawable(R.drawable.overflow_bottom));
 		list.setAdapter(adapter);
 	}

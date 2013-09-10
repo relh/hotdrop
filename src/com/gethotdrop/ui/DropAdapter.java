@@ -36,7 +36,10 @@ public class DropAdapter extends ArrayAdapter<Drop> {
 
            holder = new ImageHolder();
            holder.note = (TextView)row.findViewById(R.id.note);
-           holder.image = (ImageView)row.findViewById(R.id.image);
+
+           holder.ups = (TextView)row.findViewById(R.id.ups);
+           holder.timestamp = (TextView)row.findViewById(R.id.timestamp);
+           //holder.image = (ImageView)row.findViewById(R.id.image);
            row.setTag(holder);
        }
        else
@@ -45,9 +48,12 @@ public class DropAdapter extends ArrayAdapter<Drop> {
        }
 
        Drop thisDrop = data.get(position);
+
        holder.note.setText(thisDrop.message);
-       int outImage=R.drawable.ic_camera;
-       holder.image.setImageResource(outImage);
+       holder.ups.setText("!");
+       holder.timestamp.setText(thisDrop.getCreatedAt().toString());
+       //int outImage=R.drawable.ic_camera;
+       // holder.image.setImageResource(outImage);
       return row;
 
    }
@@ -56,5 +62,7 @@ public class DropAdapter extends ArrayAdapter<Drop> {
    {
        ImageView image;
        TextView note;
+       TextView timestamp;
+       TextView ups;
    }
 }

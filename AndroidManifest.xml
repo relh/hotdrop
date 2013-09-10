@@ -23,6 +23,10 @@
             android:name="com.gethotdrop.service.UpdateService"
             android:label="HotDrop Sync Service" >
         </service>
+         <service
+            android:name="com.gethotdrop.service.LocationWorker"
+            android:label="Worker" >
+        </service>
 
         <activity   
             android:name="com.gethotdrop.ui.Feed"

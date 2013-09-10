@@ -89,8 +89,8 @@ public class Api {
 			double latitude = jsonHotdrop.getDouble("latitude");
 			double longitude = jsonHotdrop.getDouble("longitude");
 			String message = jsonHotdrop.getString("message");
-			Date createdAt = new Date(jsonHotdrop.getLong("created_at")); 
-			Date updatedAt = new Date(jsonHotdrop.getLong("updated_at"));
+			Date createdAt = new Date(jsonHotdrop.getLong("created_at") * 1000); 
+			Date updatedAt = new Date(jsonHotdrop.getLong("updated_at") * 1000);
 			Drop hotdrop = new Drop(id, userId, latitude, longitude, message, createdAt, updatedAt);
 			hotdrops.put(id, hotdrop);
 		}

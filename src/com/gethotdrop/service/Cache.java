@@ -1,6 +1,8 @@
 package com.gethotdrop.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -83,6 +85,14 @@ public class Cache {
 		for(Drop drop : activeDrops.values()) {
 			dropList.add(drop);
 		}
+		Collections.sort(dropList, new Comparator<Drop>() {
+
+			@Override
+			public int compare(Drop arg0, Drop arg1) {
+				return -arg0.getCreatedAt().compareTo(arg1.getCreatedAt());
+			}
+			
+		});
 		return dropList;
 	}
 	
