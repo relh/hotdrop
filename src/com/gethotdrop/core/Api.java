@@ -98,6 +98,22 @@ public class Api {
 		return hotdrops;
 	}
 	
+	public boolean isPrize(int drop_id) throws IOException, JSONException {
+		String url = SERVER_URL + "hotdrop/isPrize";
+		String query = String.format("drop_id=%s", drop_id);
+		
+		JSONObject json = new JSONObject(getRequest(url, query));
+		return json.getBoolean("prize");
+	}
+	
+	public boolean claimPrize(String email, int drop_id) throws IOException, JSONException {
+		String url = SERVER_URL + "hotdrop/isPrize";
+		String query = String.format("email=%s&drop_id=%s", drop_id);
+		
+		JSONObject json = new JSONObject(getRequest(url, query));
+		return json.getBoolean("success");
+	}
+	
 	public Drop setHotdrop(double latitude, double longitude, String message) throws IOException, JSONException {
 		String url = SERVER_URL + HOTDROP_SET;
 		String query;
