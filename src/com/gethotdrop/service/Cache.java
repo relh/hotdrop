@@ -89,7 +89,7 @@ public class Cache {
 
 			@Override
 			public int compare(Drop arg0, Drop arg1) {
-				return arg0.getCreatedAt().compareTo(arg1.getCreatedAt());
+				return -arg0.getCreatedAt().compareTo(arg1.getCreatedAt());
 			}
 			
 		});

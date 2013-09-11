@@ -17,9 +17,9 @@ public class UpdateService extends Service {
 	public LocationManager locManager;
 	public MyLocationListener locListener;
 	Cache cache;
-	private long minTime = (1000) * 60 * (1 / 4);
-	private float minDistance = 5F;
-	private String provider = LocationManager.GPS_PROVIDER;
+	private long minTime = (1000) * 60 * (1 / 2);
+	private float minDistance = 15F;
+	private String provider = LocationManager.NETWORK_PROVIDER;
 
 	/**
 	 * Service Events
