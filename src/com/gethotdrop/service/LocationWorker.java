@@ -55,7 +55,7 @@ public class LocationWorker extends IntentService {
 		} else {
 			if (cache.refreshCache(loc))
 				//TODO: Feed update view
-			if (cache.isNewDrop())
+			if (cache.isNewDrop() && !isForeground("com.gethotdrop.hotdrop"))
 				createNotification();
 		}
 	}
