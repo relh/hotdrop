@@ -124,9 +124,6 @@ public class Post extends Activity {
 		case android.R.id.home:
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
-		case R.id.action_settings:
-			// TODO
-			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
