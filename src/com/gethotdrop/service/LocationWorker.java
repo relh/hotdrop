@@ -56,7 +56,6 @@ public class LocationWorker extends IntentService {
 
 		}
 		if (cache.refreshCache(loc))
-			Log.e("note", "here");
 			createNotification();
 	}
 

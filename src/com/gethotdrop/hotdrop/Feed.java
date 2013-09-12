@@ -30,21 +30,20 @@ public class Feed extends Activity {
 		setContentView(R.layout.activity_feed);
 		getActionBar().setTitle(R.string.action_feed);
 
+	//For receiving list updates	
 		bManager = LocalBroadcastManager.getInstance(this);
 		IntentFilter intentFilter = new IntentFilter();
 		intentFilter.addAction("com.gethotdrop.service.UPDATE_FEED");
 		bManager.registerReceiver(mFeedUpdateReceiver, intentFilter);
 		
+	//If need a Cache	
 //		Location l = new Location(LocationManager.PASSIVE_PROVIDER);
 //		l.setLatitude(39.9525);
 //		l.setLongitude(-75.1909);
 		Cache myCache = Cache.initialize(getBaseContext());
 //		myCache.refreshCache(l);
 
-        updateRunnable.run();
-    }
-
-    protected void updateView() {
+	//Create ListView Adapter	
         adapter = new DropAdapter(this, R.layout.card, Cache.getInstance().getActiveDropsList());
 
         list = (ListView) findViewById(R.id.list);
@@ -52,6 +51,12 @@ public class Feed extends Activity {
         //list.setOverscrollHeader(header);
         //list.setOverscrollFooter(getResources().getDrawable(R.drawable.overflow_bottom));
         list.setAdapter(adapter);
+		
+        updateRunnable.run();
+    }
+
+    protected void updateView() {
+        adapter.notifyDataSetChanged();
     }
 
 	@Override
