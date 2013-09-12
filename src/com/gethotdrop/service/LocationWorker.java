@@ -53,12 +53,13 @@ public class LocationWorker extends IntentService {
 		if (cache == null) {
 			Log.e("error", "cache was null");
 		} else {
-
+			if (cache.refreshCache(loc))
+				//TODO: Feed update view
+			if (cache.isNewDrop())
+				createNotification();
 		}
-		if (cache.refreshCache(loc))
-			createNotification();
 	}
-
+	
 	public boolean isForeground(String myPackage) {
 		ActivityManager manager = (ActivityManager) this
 				.getSystemService(Context.ACTIVITY_SERVICE);
@@ -92,8 +93,8 @@ public class LocationWorker extends IntentService {
 		//Get Vibrator service
 		Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 		
-		// Vibrate for 250 milliseconds
-		v.vibrate(250);
+		// Vibrate for 300 milliseconds
+		v.vibrate(300);
 	}
 
 }

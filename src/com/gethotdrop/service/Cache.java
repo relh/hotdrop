@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.app.ActivityManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.location.Location;
 
@@ -18,6 +20,8 @@ public class Cache {
 	private Map<Integer, Drop> activeDrops = new HashMap<Integer, Drop>();
 	private Map<Integer, Drop> allDrops = new HashMap<Integer, Drop>();
 
+	private Map<Integer, Drop> newActiveDrops = new HashMap<Integer, Drop>();
+	
 	private static Cache instance = null;
 
 	protected Cache(Context context) {
@@ -49,22 +53,29 @@ public class Cache {
 			return false;
 		}
 		
-		Map<Integer, Drop> oldActiveDrops = activeDrops;
-		Map<Integer, Drop> newActiveDrops = new HashMap<Integer, Drop>();
+		newActiveDrops = new HashMap<Integer, Drop>();
 		for (Drop drop : newAllDrops.values()) {
 			if (drop.getLocation().distanceTo(location) <= radius * 1000) {
 				newActiveDrops.put(drop.getId(), drop);
 			}
 		}
-
-		if (equalMaps(oldActiveDrops, newActiveDrops))
+		if (equalMaps(activeDrops, newActiveDrops))
 			return false;
-		else {
-			activeDrops = newActiveDrops;
-			return true;
-		}
+		return true;
 	}
 
+	public boolean isNewDrop() {
+		int i = 0;
+		for (Integer k : newActiveDrops.keySet()) {
+			if (activeDrops.containsKey(k))
+				i += 1;
+		}
+		activeDrops = newActiveDrops;
+		if (i != newActiveDrops.keySet().size())
+			return true;
+		return false;
+	}
+	
 	public boolean equalMaps(Map<Integer, Drop> a, Map<Integer, Drop> b) {
 		if (a.size() != b.size())
 			return false;
