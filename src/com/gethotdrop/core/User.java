@@ -1,7 +1,5 @@
 package com.gethotdrop.core;
 
-import java.util.Date;
-
 public class User {
 	private int id;
 	

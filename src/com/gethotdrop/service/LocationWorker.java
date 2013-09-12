@@ -2,6 +2,7 @@ package com.gethotdrop.service;
 import java.util.List;
 
 import com.gethotdrop.hotdrop.Feed;
+import com.gethotdrop.hotdrop.R;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
@@ -14,6 +15,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
 
@@ -54,7 +56,7 @@ public class LocationWorker extends IntentService {
 
 		}
 		if (cache.refreshCache(loc))
-			makeNotifications();
+			createNotification();
 	}
 
 	public boolean isForeground(String myPackage) {
@@ -65,36 +67,34 @@ public class LocationWorker extends IntentService {
 		ComponentName componentInfo = runningTaskInfo.get(0).topActivity;
 		if (componentInfo.getPackageName().equals(myPackage))
 			return true;
+		createNotification();
 		return false;
 	}
 
-	@SuppressLint("NewApi")
-	public void createNotification(View view, String type) {
+	public void createNotification() {
 		// Prepare intent which is triggered if the
 		// notification is selected
 		Intent intent = new Intent(this, Feed.class);
 		PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
+
 		// Build notification
-		// Actions are just fake
 		Notification noti = new Notification.Builder(this)
-				.setContentTitle("New mail from " + "test@gmail.com")
-				//.setContentText("Subject").setSmallIcon(R.drawable.ic_launcher)
+				.setContentTitle("Discovered Hotdrop")
+				.setContentText("You have a new drop!").setSmallIcon(R.drawable.ic_launcher)
 				.setContentIntent(pIntent).build();
 		NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+		
 		// Hide the notification after its selected
 		noti.flags |= Notification.FLAG_AUTO_CANCEL;
 
+		//Launch notification
 		notificationManager.notify(0, noti);
-	}
-
-	public void makeNotifications() {
-		//if (isForeground("com.gethotdrop.ui")) {
-		//	Intent i = new Intent("com.gethotdrop.service.UPDATE_FEED");
-		//	LocalBroadcastManager.getInstance(this).sendBroadcast(i);
-		//} else {
-			createNotification(null, "Hotdrop found!");
-
-		//}
+		
+		//Get Vibrator service
+		Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+		
+		// Vibrate for 250 milliseconds
+		v.vibrate(250);
 	}
 
 }

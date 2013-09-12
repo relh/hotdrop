@@ -16,14 +16,11 @@ import com.gethotdrop.service.Cache;
 import com.gethotdrop.service.LocationWorker;
 import com.gethotdrop.service.UpdateService;
 
-
 public class Feed extends Activity {
 	DropAdapter adapter;
 	ListView list;
 	LocalBroadcastManager bManager;	
 	static Context c;
-
-
 
     @Override
 	protected void onCreate(Bundle savedInstanceState) {

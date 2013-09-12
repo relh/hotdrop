@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
-import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
 
 public class MyLocationListener implements LocationListener {
 	private Context con;

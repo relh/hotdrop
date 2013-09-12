@@ -169,7 +169,6 @@ public class Post extends Activity {
             Intent i = new Intent(c, LocationWorker.class);
             c.startService(i);
 			NavUtils.navigateUpFromSameTask((Activity) c);
-
 		}
 	}
 
