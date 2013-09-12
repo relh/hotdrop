@@ -63,7 +63,6 @@ public class Cache {
 			activeDrops = newActiveDrops;
 			return true;
 		}
-
 	}
 
 	public boolean equalMaps(Map<Integer, Drop> a, Map<Integer, Drop> b) {

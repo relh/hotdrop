@@ -56,6 +56,7 @@ public class LocationWorker extends IntentService {
 
 		}
 		if (cache.refreshCache(loc))
+			Log.e("note", "here");
 			createNotification();
 	}
 
@@ -67,7 +68,6 @@ public class LocationWorker extends IntentService {
 		ComponentName componentInfo = runningTaskInfo.get(0).topActivity;
 		if (componentInfo.getPackageName().equals(myPackage))
 			return true;
-		createNotification();
 		return false;
 	}
 

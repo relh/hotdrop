@@ -14,7 +14,6 @@ public class User {
 	public boolean equals(Object o) {
 		if ((o instanceof User) && this.id == ((User)o).id)
 			return true;
-		
 		return false;
 	}
 }
