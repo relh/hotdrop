@@ -98,7 +98,7 @@ public class Post extends Activity {
 	@Override
 	protected void onPause() {
 		super.onPause();
-		locManager.removeUpdates(listen);
+        locManager.removeUpdates(listen);
 	}
 
 	@Override
