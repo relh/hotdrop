@@ -40,7 +40,7 @@ public class LocationWorker extends IntentService {
 	@Override
 	protected void onHandleIntent(Intent intent) {
         locManager = UpdateService.getLocationManager();
-        Cache cache = Cache.initialize(getApplication());
+        cache = Cache.initialize(getApplication());
         Location loc = locManager
                 .getLastKnownLocation(LocationManager.GPS_PROVIDER);
         if (loc == null) {
@@ -81,7 +81,7 @@ public class LocationWorker extends IntentService {
 		Notification noti = new Notification.Builder(this)
 				.setContentTitle("Discovered Hotdrop")
 				.setContentText("You have a new drop!").setSmallIcon(R.drawable.ic_launcher)
-				.setContentIntent(pIntent).build();
+				.setContentIntent(pIntent).getNotification();
 		NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 		
 		// Hide the notification after its selected
