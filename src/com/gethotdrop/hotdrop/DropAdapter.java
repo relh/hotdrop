@@ -1,15 +1,14 @@
-package com.gethotdrop.ui;
+package com.gethotdrop.hotdrop;
 
 import java.util.List;
 import com.gethotdrop.core.Drop;
+
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class DropAdapter extends ArrayAdapter<Drop> {

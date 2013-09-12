@@ -10,7 +10,7 @@
     android:orientation="vertical"
     tools:context=".Post" >
 
-    <com.gethotdrop.ui.AspectRatioForceView
+    <com.gethotdrop.hotdrop.AspectRatioForceView
         android:id="@+id/chosenImage"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

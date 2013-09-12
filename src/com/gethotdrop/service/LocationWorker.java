@@ -1,7 +1,7 @@
 package com.gethotdrop.service;
 import java.util.List;
 
-import com.gethotdrop.ui.Feed;
+import com.gethotdrop.hotdrop.Feed;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;

@@ -1,4 +1,4 @@
-package com.gethotdrop.ui;
+package com.gethotdrop.hotdrop;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +9,6 @@ import com.gethotdrop.core.Api;
 import com.gethotdrop.service.Installation;
 import com.gethotdrop.service.LocationWorker;
 import com.gethotdrop.service.UpdateService;
-import com.gethotdrop.ui.R;
 
 import android.location.Location;
 import android.location.LocationListener;

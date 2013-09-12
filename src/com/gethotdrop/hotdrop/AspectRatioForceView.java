@@ -1,5 +1,5 @@
 
-package com.gethotdrop.ui;
+package com.gethotdrop.hotdrop;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

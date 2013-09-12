@@ -1,7 +1,5 @@
-package com.gethotdrop.ui;
+package com.gethotdrop.hotdrop;
 
-import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -17,9 +15,6 @@ import android.os.Handler;
 import com.gethotdrop.service.Cache;
 import com.gethotdrop.service.LocationWorker;
 import com.gethotdrop.service.UpdateService;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 public class Feed extends Activity {
