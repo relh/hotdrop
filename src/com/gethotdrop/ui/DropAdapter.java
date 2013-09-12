@@ -60,7 +60,7 @@ public class DropAdapter extends ArrayAdapter<Drop> {
 
    static class ImageHolder
    {
-       ImageView image;
+      // ImageView image;
        TextView note;
        TextView timestamp;
        TextView ups;

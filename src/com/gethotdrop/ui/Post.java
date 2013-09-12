@@ -7,6 +7,7 @@ import android.os.Bundle;
 import java.io.File;
 import com.gethotdrop.core.Api;
 import com.gethotdrop.service.Installation;
+import com.gethotdrop.service.LocationWorker;
 import com.gethotdrop.service.UpdateService;
 import com.gethotdrop.ui.R;
 
@@ -166,7 +167,10 @@ public class Post extends Activity {
 
 		@Override
 		protected void onPostExecute(Long result) {
+            Intent i = new Intent(c, LocationWorker.class);
+            c.startService(i);
 			NavUtils.navigateUpFromSameTask((Activity) c);
+
 		}
 	}
 

@@ -14,22 +14,20 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 public class UpdateService extends Service {
-	public LocationManager locManager;
+	private static LocationManager locManager;
 	public MyLocationListener locListener;
 	Cache cache;
 	private long minTime = (1000) * 60 * (1 / 2);
 	private float minDistance = 15F;
-	private String provider = LocationManager.NETWORK_PROVIDER;
+	private String provider = LocationManager.GPS_PROVIDER;
 
 	/**
 	 * Service Events
 	 */
 	@Override
 	public void onCreate() {
-		   cache = Cache.initialize(getApplication());
-
-
-		Log.e("service", "This is a service");
+		cache = Cache.initialize(getApplication());
+        Log.e("service", "This is a service");
 		locManager = (LocationManager) this
 				.getSystemService(Context.LOCATION_SERVICE);
 		// get singletons
@@ -39,7 +37,7 @@ public class UpdateService extends Service {
 		locListener = new MyLocationListener(getApplicationContext());
 		locManager.requestLocationUpdates(provider, minTime, minDistance,
 				locListener);
-	}
+    }
 	
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -47,5 +45,9 @@ public class UpdateService extends Service {
 		// TODO Auto-generated method stub
 		return null;
 		
-	}	
+	}
+
+    public static LocationManager getLocationManager() {
+        return locManager;
+    }
 }

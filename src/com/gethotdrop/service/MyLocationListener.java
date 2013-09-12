@@ -16,10 +16,6 @@ public class MyLocationListener implements LocationListener {
 	@Override
 	public void onLocationChanged(Location location) {
 		Intent i = new Intent(con, LocationWorker.class);
-		i.putExtra("lat", location.getLatitude());
-		i.putExtra("lng", location.getLongitude());
-		i.putExtra("acc", location.getAccuracy());
-		i.putExtra("bea", location.getBearing());
 		con.startService(i);
 	}
 

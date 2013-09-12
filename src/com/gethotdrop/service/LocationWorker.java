@@ -13,6 +13,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
+import android.location.LocationManager;
 import android.util.Log;
 import android.view.View;
 
@@ -23,6 +24,7 @@ public class LocationWorker extends IntentService {
 	 * constructor with a name for the worker thread.
 	 */
 	private Cache cache;
+    private LocationManager locManager;
 
 	public LocationWorker() {
 		super("HardWorker");
@@ -35,17 +37,17 @@ public class LocationWorker extends IntentService {
 	 */
 	@Override
 	protected void onHandleIntent(Intent intent) {
-		Cache cache = Cache.initialize(getApplication());
-		double lat = intent.getDoubleExtra("lat", 0F);
-		double lng = intent.getDoubleExtra("lng", 0F);
-		float acc = intent.getFloatExtra("acc", 3333);
-		float bea = intent.getFloatExtra("bea", 333);
-		Location loc = new Location("Hotdrop");
-		loc.setLatitude(lat);
-		loc.setLongitude(lng);
-		loc.setAccuracy(acc);
-		loc.setBearing(bea);
-
+        locManager = UpdateService.getLocationManager();
+        Cache cache = Cache.initialize(getApplication());
+        Location loc = locManager
+                .getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if (loc == null) {
+            loc = locManager
+                    .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        }
+        if (loc == null) {
+            return;
+        }
 		if (cache == null) {
 			Log.e("error", "cache was null");
 		} else {

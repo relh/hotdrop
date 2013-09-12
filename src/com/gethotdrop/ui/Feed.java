@@ -13,8 +13,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.os.Handler;
 import com.gethotdrop.service.Cache;
+import com.gethotdrop.service.LocationWorker;
 import com.gethotdrop.service.UpdateService;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class Feed extends Activity {
@@ -22,17 +27,17 @@ public class Feed extends Activity {
 	ListView list;
 	LocalBroadcastManager bManager;	
 	static Context c;
-	
-	@Override
+
+
+
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+        c = this;
+        startService(new Intent(this, UpdateService.class));
 		setContentView(R.layout.activity_feed);
 		getActionBar().setTitle(R.string.action_feed);
-		
-		c = this;
-		
-		startService(new Intent(this, UpdateService.class));
-		
+
 		bManager = LocalBroadcastManager.getInstance(this);
 		IntentFilter intentFilter = new IntentFilter();
 		intentFilter.addAction("com.gethotdrop.service.UPDATE_FEED");
@@ -43,15 +48,19 @@ public class Feed extends Activity {
 //		l.setLongitude(-75.1909);
 		Cache myCache = Cache.initialize(getBaseContext());
 //		myCache.refreshCache(l);
-		
-		adapter = new DropAdapter(this, R.layout.card, Cache.getInstance().getActiveDropsList());
-		
-		list = (ListView) findViewById(R.id.list);
-		list.setOverScrollMode(ListView.OVER_SCROLL_ALWAYS);
-		//list.setOverscrollHeader(header);
-		//list.setOverscrollFooter(getResources().getDrawable(R.drawable.overflow_bottom));
-		list.setAdapter(adapter);
-	}
+
+        updateRunnable.run();
+    }
+
+    protected void updateView() {
+        adapter = new DropAdapter(this, R.layout.card, Cache.getInstance().getActiveDropsList());
+
+        list = (ListView) findViewById(R.id.list);
+        list.setOverScrollMode(ListView.OVER_SCROLL_ALWAYS);
+        //list.setOverscrollHeader(header);
+        //list.setOverscrollFooter(getResources().getDrawable(R.drawable.overflow_bottom));
+        list.setAdapter(adapter);
+    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -64,6 +73,8 @@ public class Feed extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.action_post:
+            Intent i = new Intent(c, LocationWorker.class);
+            c.startService(i);
 			Intent intent = new Intent(Feed.this, Post.class);
 			this.startActivity(intent);
 			return true;
@@ -86,6 +97,20 @@ public class Feed extends Activity {
 		        }
 		  }
 	};
+
+
+    final Handler updateHandler = new Handler();
+
+    final Runnable updateRunnable = new Runnable() {
+        public void run(){
+            startService(new Intent(c, LocationWorker.class));
+            updateView();
+            updateHandler.postDelayed(this, 1000*2);
+        }
+    };
+
+
+
 }
 
 //public void createNotification(View view, String type) {
@@ -97,7 +122,7 @@ public class Feed extends Activity {
 //Notification noti = new Notification.Builder(this)
 //    .setContentTitle(type +  " Warning")
 //    .setContentText("Dangerous levels of " + type).build();
-//    
+//
 //NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 //// Hide the notification after its selected
 //noti.flags |= Notification.FLAG_AUTO_CANCEL;
