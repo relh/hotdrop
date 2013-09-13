@@ -21,7 +21,7 @@ public class UpdateService extends Service {
 	@Override
 	public void onCreate() {
 		cache = Cache.initialize(getApplication());
-        Log.e("service", "This is a service");
+		Log.e("service", "This is a service");
 		locManager = (LocationManager) this
 				.getSystemService(Context.LOCATION_SERVICE);
 		// get singletons

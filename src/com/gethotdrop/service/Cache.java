@@ -20,7 +20,7 @@ public class Cache {
 	private Map<Integer, Drop> activeDrops = new HashMap<Integer, Drop>();
 	private Map<Integer, Drop> allDrops = new HashMap<Integer, Drop>();
 
-	private Map<Integer, Drop> newActiveDrops = new HashMap<Integer, Drop>();
+	private Map<Integer, Drop> oldActiveDrops = new HashMap<Integer, Drop>();
 	
 	private static Cache instance = null;
 
@@ -53,7 +53,8 @@ public class Cache {
 			return false;
 		}
 		
-		newActiveDrops = new HashMap<Integer, Drop>();
+		oldActiveDrops = new HashMap<Integer, Drop>(activeDrops);
+		HashMap<Integer, Drop> newActiveDrops = new HashMap<Integer, Drop>();
 		for (Drop drop : newAllDrops.values()) {
 			if (drop.getLocation().distanceTo(location) <= radius * 1000) {
 				newActiveDrops.put(drop.getId(), drop);
@@ -61,17 +62,19 @@ public class Cache {
 		}
 		if (equalMaps(activeDrops, newActiveDrops))
 			return false;
-		return true;
+		else {
+			activeDrops = newActiveDrops;
+			return true;
+		}
 	}
 
 	public boolean isNewDrop() {
 		int i = 0;
-		for (Integer k : newActiveDrops.keySet()) {
+		for (Integer k : oldActiveDrops.keySet()) {
 			if (activeDrops.containsKey(k))
 				i += 1;
 		}
-		activeDrops = newActiveDrops;
-		if (i != newActiveDrops.keySet().size())
+		if (i != oldActiveDrops.keySet().size())
 			return true;
 		return false;
 	}

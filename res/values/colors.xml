@@ -9,4 +9,5 @@
      <color name="gray">#999999</color>
      <color name="grayDark">#666666</color>
      <color name="white">#ffffff</color>
+     <color name="pressed_actionbartheme">#CC5ACDFF</color>
 </resources>

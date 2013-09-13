@@ -163,8 +163,8 @@ public class Post extends Activity {
 
 		@Override
 		protected void onPostExecute(Long result) {
-            Intent i = new Intent(c, LocationWorker.class);
-            c.startService(i);
+			Intent i = new Intent(c, LocationWorker.class);
+			c.startService(i);
 			NavUtils.navigateUpFromSameTask((Activity) c);
 		}
 	}

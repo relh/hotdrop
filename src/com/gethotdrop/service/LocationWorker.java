@@ -4,7 +4,6 @@ import java.util.List;
 import com.gethotdrop.hotdrop.Feed;
 import com.gethotdrop.hotdrop.R;
 
-import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.IntentService;
 import android.app.Notification;
@@ -17,7 +16,6 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Vibrator;
 import android.util.Log;
-import android.view.View;
 
 public class LocationWorker extends IntentService {
 
@@ -53,9 +51,10 @@ public class LocationWorker extends IntentService {
 		if (cache == null) {
 			Log.e("error", "cache was null");
 		} else {
-			if (cache.refreshCache(loc))
+			if (cache.refreshCache(loc)) {
 				//TODO: Feed update view
-			if (cache.isNewDrop() && !isForeground("com.gethotdrop.hotdrop"))
+			}
+			if (cache.isNewDrop())
 				createNotification();
 		}
 	}
