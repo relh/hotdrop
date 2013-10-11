@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/CardBase"  >
+
+    <com.gethotdrop.hotdrop.FitToWidthView
+        android:id="@+id/chosenImage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        android:src="@drawable/placeholderimage"
+        android:visibility="gone" />
+    
+    <EditText
+         android:id="@+id/postNote"
+         style="@style/TextMedium"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:text="@string/example_card_note"
+         android:textSize="18sp" />
+
+ </LinearLayout>
+ 
