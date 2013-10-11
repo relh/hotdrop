@@ -2,41 +2,21 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="@color/grayLight"
-    android:orientation="horizontal"
-    android:paddingLeft="@dimen/feed_padding"
-    android:paddingRight="@dimen/feed_padding" >
+    android:orientation="horizontal" >
 
     <ListView
         android:id="@+id/list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:divider="@android:color/transparent"
-        android:dividerHeight="@dimen/list_divider_height" 
-        android:clipToPadding="false"
-        android:paddingBottom="@dimen/list_bottom_padding"
-        android:paddingTop="@dimen/list_padding"  >
+        android:clipToPadding="false" >
     </ListView>
     
-    <LinearLayout android:id="@+id/emptyHolder"
-        android:orientation="vertical"
-        android:visibility="gone" 
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
-        <TextView android:id="@+id/empty1"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:text="@string/empty_state_msg"/>
-    
-        <ImageView
-        	android:id="@+id/empty2"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:src="@drawable/ic_empty_state"/>
-        
-        <TextView android:id="@+id/empty3"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:text="@string/empty_state_header"/>
-    </LinearLayout>
-
 </LinearLayout>
+
+
+<!--     android:paddingLeft="@dimen/feed_padding" -->
+<!--     android:paddingRight="@dimen/feed_padding" -->
+<!--     android:dividerHeight="@dimen/list_divider_height"  -->
+<!--     android:paddingBottom="@dimen/list_bottom_padding" -->
+<!--     android:paddingTop="@dimen/list_padding"   -->

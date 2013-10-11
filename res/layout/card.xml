@@ -1,49 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/white"
-    android:orientation="vertical" >
+    style="@style/CardBase" >
   
-    <com.gethotdrop.hotdrop.AspectRatioForceView
-	    android:id="@+id/image"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_gravity="center"
-	    android:layout_margin="@dimen/card_image_margin"
-	    android:src="@drawable/placeholderimage" />
+    <com.gethotdrop.hotdrop.FitToWidthView
+        android:id="@+id/image"
+        android:src="@drawable/placeholderimage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/marginMain" />
 
      <TextView
          android:id="@+id/note"
+         style="@style/TextMedium"
          android:layout_width="fill_parent"
          android:layout_height="wrap_content"
-         android:layout_marginBottom="@dimen/note_caption_vertical_margin"
-         android:layout_marginLeft="@dimen/note_caption_horizontal_margin"
-         android:layout_marginRight="@dimen/note_caption_horizontal_margin"
-         android:layout_marginTop="@dimen/note_caption_vertical_margin"
          android:text="@string/example_card_note"
-         android:textAppearance="?android:attr/textAppearanceSmall"
-         android:textSize="22sp" />
+         android:textSize="18sp" />
 
+     <View
+         android:id="@+id/separator"
+         android:layout_width="fill_parent"
+         android:layout_height="1dp"
+         android:layout_marginBottom="@dimen/marginSmall"
+         android:layout_marginTop="@dimen/marginSmall"
+         android:background="@color/grayLighter"
+         android:visibility="visible" />
+     
      <RelativeLayout
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:background="@color/grayLighter" >
+         android:background="@color/white" >
 
          <TextView
-             android:id="@+id/ups"
+             android:id="@+id/score"
+             style="@style/BlueText"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:layout_alignParentLeft="true"
-             style="@style/BlueText" />
+             android:text="@string/example_score" />
 
          <TextView
-             android:id="@+id/timestamp"
+             android:id="@+id/timestamp"  
+	         style="@style/TextMicro"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:layout_alignParentRight="true"
              android:layout_centerVertical="true"
-             android:paddingRight="@dimen/timestamp_right_padding"
              android:text="@string/example_time_stamp"
              android:textColor="@color/gray" />
 

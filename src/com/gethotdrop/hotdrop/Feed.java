@@ -2,66 +2,15 @@ package com.gethotdrop.hotdrop;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.ListView;
-import android.os.Handler;
-import com.gethotdrop.service.Cache;
-import com.gethotdrop.service.LocationWorker;
-import com.gethotdrop.service.UpdateService;
 
 public class Feed extends Activity {
-	DropAdapter adapter;
-	ListView list;
-	LocalBroadcastManager bManager;	
-	Cache cache;
-	static Context c;
 
-    @Override
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-        c = this;
-        startService(new Intent(this, UpdateService.class));
 		setContentView(R.layout.activity_feed);
-		getActionBar().setTitle(R.string.action_feed);
-
-	//For receiving list updates	
-		bManager = LocalBroadcastManager.getInstance(this);
-		IntentFilter intentFilter = new IntentFilter();
-		intentFilter.addAction("com.gethotdrop.service.UPDATE_FEED");
-		bManager.registerReceiver(mFeedUpdateReceiver, intentFilter);
-		
-	//If need a Cache	
-//		Location l = new Location(LocationManager.PASSIVE_PROVIDER);
-//		l.setLatitude(39.9525);
-//		l.setLongitude(-75.1909);
-		
-		//GOTTA INITIALIZE CACHE VVV
-		cache = Cache.initialize(getBaseContext());
-		
-//		myCache.refreshCache(l);
-
-	//Create ListView Adapter	
-        adapter = new DropAdapter(this, R.layout.card, Cache.getInstance().getActiveDropsList());
-
-        list = (ListView) findViewById(R.id.list);
-        list.setOverScrollMode(ListView.OVER_SCROLL_ALWAYS);
-        //list.setOverscrollHeader(header);
-        //list.setOverscrollFooter(getResources().getDrawable(R.drawable.overflow_bottom));
-        list.setAdapter(adapter);
-		
-        updateRunnable.run();
-    }
-
-    protected void updateView() {
-        adapter.notifyDataSetChanged();
-    }
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -70,58 +19,4 @@ public class Feed extends Activity {
 		return true;
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.action_post:
-            Intent i = new Intent(c, LocationWorker.class);
-            c.startService(i);
-			Intent intent = new Intent(Feed.this, Post.class);
-			this.startActivity(intent);
-			return true;
-		case R.id.action_settings:
-			//createNotification(null, "notification here");
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-	}
-
-	public BroadcastReceiver mFeedUpdateReceiver = new BroadcastReceiver() {
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			   // Extract data included in the Intent
-		       if(intent.getAction().equals("com.gethotdrop.service.UPDATE_FEED")) {
-		    	   Log.v("Test", "this is the activity");
-		    	   DropAdapter adapter = new DropAdapter(c, R.layout.card, Cache.getInstance().getActiveDropsList());
-		    	   list.setAdapter(adapter);
-		        }
-		  }
-	};
-
-
-    final Handler updateHandler = new Handler();
-
-    final Runnable updateRunnable = new Runnable() {
-        public void run(){
-            startService(new Intent(c, LocationWorker.class));
-            updateView();
-            updateHandler.postDelayed(this, 1000*2);
-        }
-    };
-
-
-
 }
-
-//list.setOnItemClickListener(new OnItemClickListener() {
-//@Override
-//public void onItemClick(AdapterView<?> parent, View view,
-//		int position, long id) {
-//
-//	//int itemPosition = position;
-//	//Drop itemValue = (Drop) list.getItemAtPosition(position);
-//	
-//	// int ups = Integer.parseInt(getApplicationContext().getResources().getString(R.id.ups));	
-//}
-//});

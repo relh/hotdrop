@@ -18,6 +18,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="example_card_note">This is placeholder text for This is placeholder text for $testing. Eventually this will be a hotdrop #@###hashtag</string>
 	<string name="example_time_stamp">2 days ago</string>
-    <string name="example_ups">12</string>
+    <string name="example_score">+42</string>
        
 </resources>
