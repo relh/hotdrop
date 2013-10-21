@@ -4,33 +4,20 @@
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
-    <style name="AppBaseTheme" parent="android:Theme.Light">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        -->
-    </style>
-
-    <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-    </style>
-
-    <!-- Custom theme. -->
-    <style name="CustomActionBarTheme"
-           parent="AppTheme">
-        <item name="android:actionBarStyle">@style/ActionBarStyle</item>
+    <style name="AppTheme" parent="android:Theme.Holo">
+             <item name="android:actionBarStyle">@style/ActionBarStyle</item>
+    		 <item name="android:textColor">@color/gray</item>  
     </style>
 
     <!-- ActionBar styles -->
-    <style name="ActionBarStyle"
-           parent="CustomActionBarTheme">
+    <style name="ActionBarStyle" parent="@android:style/Widget.Holo.ActionBar">
         <item name="android:background">@color/red</item>
-    </style>
-
+        <item name="android:color">@color/white</item>
+        <item name="android:textSize">22sp</item>
+  </style>
+  
     <!--  Card Styles -->
-    <style name="CardBase" parent="AppBaseTheme">
+    <style name="CardBase" parent="AppTheme">
             <item name="android:layout_width">fill_parent</item>
             <item name="android:layout_height">fill_parent</item>
             <item name="android:background">@color/white</item>
@@ -40,7 +27,7 @@
     </style>
     
     <!--  Text Styles -->
-    <style name="RobotoLight" parent="AppBaseTheme">
+    <style name="RobotoLight" parent="AppTheme">
         <item name="android:fontFamily">sans-serif-light</item> 
     </style>
     
